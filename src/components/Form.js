@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
+import Response from './Response';
 import '../App.css';
+import * as yup from 'yup';
+import schema from '../validation/formSchema';
 
 export default function Form(props) {
     const [foodOrder, setFoodOrder] = useState({
@@ -30,6 +33,12 @@ export default function Form(props) {
         console.log(foodOrder);
         setSubmitOrder(true);
     }
+
+    useEffect(() => {
+        schema
+        .isValid(foodOrder)
+        TouchEvent(valid => setDisabled(!valid))
+    }, [foodOrder])
 
     return(
         <section className='formContainers'>
