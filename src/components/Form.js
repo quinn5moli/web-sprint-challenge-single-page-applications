@@ -35,14 +35,14 @@ export default function Form(props) {
         <div>
             <h3>Build Your Own Pie</h3>
             {disabled && <p>* Name must be at least 2 characters</p>}
-            {!submitOrder && <form id= 'order-form' onSubmit={submitHandler}>
+            {!submitOrder && <form id= 'pizza-form' onSubmit={submitHandler}>
                 <label htmlFor='name'>
                     Name
                     <input type='text' name='name' id='name-input' value={name} onChange={changeHandler} />
                 </label>
                 <label htmlFor='size'>
                     Select a Size 
-                    <select name = 'size' id= 'select-size' value={size} onChange={changeHandler}>
+                    <select name = 'size' id= 'size-dropdown' value={size} onChange={changeHandler}>
                             <option value='small'> Small(9") </option>
                             <option value='regular'>Regular (12")</option>
                             <option value='large'>Large (16")</option>
