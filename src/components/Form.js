@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import '../App.css';
 
 export default function Form(props) {
     const [foodOrder, setFoodOrder] = useState({
@@ -32,7 +32,7 @@ export default function Form(props) {
     }
 
     return(
-        <div>
+        <section className='formContainers'>
             <h3>Build Your Own Pie</h3>
             {disabled && <p>* Name must be at least 2 characters</p>}
             {!submitOrder && <form id= 'pizza-form' onSubmit={submitHandler}>
@@ -51,6 +51,7 @@ export default function Form(props) {
                 <hr/>
                 <label htmlFor='toppings'>
                     Add Toppings (pick up to 4)
+                </label>
                     <label htmlFor='pepperoni'>
                         <input 
                         checked={pepperoni} 
@@ -113,8 +114,8 @@ export default function Form(props) {
                 </label>
                 <hr/>
                 <button id='order-button' type ='submit' disabled={disabled}>Add to Order?</button>
-            </form>
-        </div>
+            </form>}
+        </section>
     )
 
 }

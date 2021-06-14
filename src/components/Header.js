@@ -11,5 +11,3 @@ export default function Header(props) {
         </div>
     )
 }
-
-export default Header;
