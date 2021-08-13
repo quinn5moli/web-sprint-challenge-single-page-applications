@@ -130,7 +130,7 @@ const Form = () => {
                         value = 'jalapeno' 
                         onChange={changeHandler}
                         />
-                        Jalapeno
+                        Jalapenos
                 </label>
                 <label htmlFor='special-text'>
                     Special Instructions
