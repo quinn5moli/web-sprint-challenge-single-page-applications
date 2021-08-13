@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function(props){
+const Response = props => {
     const {foodOrder} = props;
         return (
             <div>
@@ -8,3 +8,5 @@ export default function(props){
             </div>
         )
 }
+
+export default Response;

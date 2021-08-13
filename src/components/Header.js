@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from '../components/Nav'
 
-export default function Header(props) {
+const Header = () => {
     return(
         <div>
             <h2> Lambda Eats </h2>
@@ -11,3 +11,5 @@ export default function Header(props) {
         </div>
     )
 }
+
+export default Header;

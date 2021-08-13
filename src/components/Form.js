@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Response from './Response';
-import '../App.css';
 import * as yup from 'yup';
-import schema from '../validation/formSchema';
+import axios from 'axios';
 
-export default function Form(props) {
+const Form = () => {
     const [foodOrder, setFoodOrder] = useState({
         name:'',
         size:'',
@@ -28,6 +27,22 @@ export default function Form(props) {
         setFoodOrder({...foodOrder, [evt.target.name]: value});
     }
 
+    const schema = yup.object().shape({
+        name: yup
+            .string()
+            .required('Name required')
+            .min(2, 'name must be at least 2 characters'),
+        size: yup.string(),
+        pepperoni: yup.string(),
+        sausage: yup.string(),
+        canadianBacon: yup.string(),
+        greenPepper: yup.string(),
+        dicedTomatoes: yup.string(),
+        roastedGarlic: yup.string(),
+        pineapple: yup.string(),
+        specialText: yup.string(),
+    })
+
     const submitHandler = evt=> {
         evt.preventDefault();
         console.log(foodOrder);
@@ -37,11 +52,11 @@ export default function Form(props) {
     useEffect(() => {
         schema
         .isValid(foodOrder)
-        TouchEvent(valid => setDisabled(!valid))
+        .then(valid => setDisabled(!valid))
     }, [foodOrder])
 
     return(
-        <section className='formContainers'>
+        <div>
             <h3>Build Your Own Pie</h3>
             {disabled && <p>* Name must be at least 2 characters</p>}
             {!submitOrder && <form id= 'pizza-form' onSubmit={submitHandler}>
@@ -68,6 +83,7 @@ export default function Form(props) {
                         name='pepperoni' 
                         value = 'pepperoni' 
                         onChange={changeHandler}/>
+                        Pepperoni
                 </label>
                 <label htmlFor='pesto'>
                         <input 
@@ -76,6 +92,7 @@ export default function Form(props) {
                         name='pesto' 
                         value = 'pesto' 
                         onChange={changeHandler}/>
+                        Pesto
                 </label>
                 <label htmlFor='sausage'>
                         <input 
@@ -84,6 +101,7 @@ export default function Form(props) {
                         name='sausage' 
                         value = 'sausage' 
                         onChange={changeHandler}/>
+                        Sausage
                 </label>
                 <label htmlFor='pineapple'>
                         <input 
@@ -92,6 +110,7 @@ export default function Form(props) {
                         name='pineapple' 
                         value = 'pineapple' 
                         onChange={changeHandler}/>
+                        Pineapple
                 </label>
                 <label htmlFor='canadianBacon'>
                         <input 
@@ -101,6 +120,7 @@ export default function Form(props) {
                         value = 'canadianBacon' 
                         onChange={changeHandler}
                         />
+                        Canadian Bacon
                 </label>
                 <label htmlFor='jalapeno'>
                         <input 
@@ -110,6 +130,7 @@ export default function Form(props) {
                         value = 'jalapeno' 
                         onChange={changeHandler}
                         />
+                        Jalapeno
                 </label>
                 <label htmlFor='special-text'>
                     Special Instructions
@@ -124,7 +145,10 @@ export default function Form(props) {
                 <hr/>
                 <button id='order-button' type ='submit' disabled={disabled}>Add to Order?</button>
             </form>}
-        </section>
+            {submitOrder && <Response foodOrder = {foodOrder}/>}
+        </div>
     )
 
 }
+
+export default Form;
